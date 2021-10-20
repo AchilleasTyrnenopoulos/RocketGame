@@ -1,0 +1,39 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class GameManager : MonoBehaviour
+{
+    public static GameManager instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    public void RestartScene()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex);
+    }
+
+    public void LoadNextScene()
+    {
+        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        SceneManager.LoadScene(nextSceneIndex);
+    }
+
+}
