@@ -14,6 +14,8 @@ public class RocketMovement : MonoBehaviour
     private Rigidbody rb;
     [SerializeField]
     private float thrustSpeed;
+    [SerializeField]
+    private AudioSource thrustAudioSrc;
 
     [SerializeField]
     private float rotationSpeed;
@@ -27,6 +29,7 @@ public class RocketMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        thrustAudioSrc = GetComponent<AudioSource>();
 
         //add event listeners
         //onThrustStart += Thrust;
@@ -51,6 +54,14 @@ public class RocketMovement : MonoBehaviour
     public void Thrust()
     {        
         rb.AddRelativeForce(Vector3.up * thrustSpeed * Time.deltaTime);
+
+        if(!thrustAudioSrc.isPlaying)
+            thrustAudioSrc.Play();
+    }
+
+    public void StopThrust()
+    {
+        thrustAudioSrc.Stop();
     }
 
     public void Rotate(int left)
