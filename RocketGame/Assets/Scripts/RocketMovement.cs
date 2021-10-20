@@ -33,11 +33,13 @@ public class RocketMovement : MonoBehaviour
 
         //add event listeners
         //onThrustStart += Thrust;
+        GameManager.instance.onExplosion += StopThrust;
     }
 
     private void OnDisable()
     {
         //onThrustStart -= Thrust;
+        GameManager.instance.onExplosion -= StopThrust;
     }
 
     // Update is called once per frame

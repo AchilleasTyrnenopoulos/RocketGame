@@ -8,13 +8,13 @@ public class CollisionHandler : MonoBehaviour
         {
             case Tags.Obstacle:
                 print("rocket got destroyed");
-                GameManager.instance.RestartScene();
+                GameManager.instance.OnExplosion();
                 break;
             case Tags.Portal:
-                GameManager.instance.LoadNextScene();
+                GameManager.instance.LoadNextScene(3);
                 break;
             default:
                 break;
         }
-    }
+    }    
 }

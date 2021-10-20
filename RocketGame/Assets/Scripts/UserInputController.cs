@@ -13,22 +13,27 @@ public class UserInputController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if(Input.GetKeyDown(KeyCode.Space))
-        //    OnThrustStart
-        //if (Input.GetKey(KeyCode.Space))
-        if(Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space))
-            RocketMovement.instance.Thrust();
-        else if (Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Space))
-            RocketMovement.instance.StopThrust();
+        //move rocket only when its not exploded
+        if (!GameManager.instance.exploded)
+        {
+            //if(Input.GetKeyDown(KeyCode.Space))
+            //    OnThrustStart
+            //if (Input.GetKey(KeyCode.Space))
+            bool thrustInput = Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space);
+            if (thrustInput)
+                RocketMovement.instance.Thrust();
+            else if (Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Space))
+                RocketMovement.instance.StopThrust();
 
-        //rotation
-        if (Input.GetKey(KeyCode.A) )
-        {
-            RocketMovement.instance.Rotate(1);
-        }
-        else if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
-        {
-            RocketMovement.instance.Rotate(-1);
+            //rotation
+            if (Input.GetKey(KeyCode.A))
+            {
+                RocketMovement.instance.Rotate(1);
+            }
+            else if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
+            {
+                RocketMovement.instance.Rotate(-1);
+            }
         }
     }
 }
