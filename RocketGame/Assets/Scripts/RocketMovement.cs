@@ -5,19 +5,20 @@ using UnityEngine;
 
 public class RocketMovement : MonoBehaviour
 {
-    public static RocketMovement instance;
-
-    //public event Action onThrustStart;
-
-    [SerializeField]
-    private Rigidbody rb;
+    //PARAMETERS
     [SerializeField]
     private float thrustSpeed;
     [SerializeField]
+    private float rotationSpeed;
+    
+    //CACHE
+    public static RocketMovement instance;
+    [SerializeField]
+    private Rigidbody rb;
+    [SerializeField]
     private AudioSource thrustAudioSrc;
 
-    [SerializeField]
-    private float rotationSpeed;
+    //public event Action onThrustStart;
 
     private void Awake()
     {
@@ -27,18 +28,19 @@ public class RocketMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //cache components
         rb = GetComponentInChildren<Rigidbody>();
         thrustAudioSrc = GetComponent<AudioSource>();
 
         //add event listeners
         //onThrustStart += Thrust;
-        GameManager.instance.onExplosion += StopThrust;
+        GameManager.instance.onExplosion += StopThrusting;
     }
 
     private void OnDisable()
     {
         //onThrustStart -= Thrust;
-        GameManager.instance.onExplosion -= StopThrust;
+        GameManager.instance.onExplosion -= StopThrusting;
     }
 
     // Update is called once per frame
@@ -52,15 +54,17 @@ public class RocketMovement : MonoBehaviour
     //    onThrustStart?.Invoke();
     //}
 
-    public void Thrust()
+    public void Thrusting()
     {        
+        //add force
         rb.AddRelativeForce(Vector3.up * thrustSpeed * Time.deltaTime);
 
+        //play audio
         if(!thrustAudioSrc.isPlaying)
             thrustAudioSrc.Play();
     }
 
-    public void StopThrust()
+    public void StopThrusting()
     {
         thrustAudioSrc.Stop();
     }
@@ -69,8 +73,10 @@ public class RocketMovement : MonoBehaviour
     {
         //freeze physics system rotation
         rb.freezeRotation = true;
+
         //apply 'our' rotation
         this.transform.Rotate(Vector3.forward * left * rotationSpeed * Time.deltaTime);
+
         //unfreeze physics system rotation
         rb.freezeRotation = false;
     }

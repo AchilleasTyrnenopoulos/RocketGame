@@ -18,15 +18,16 @@ public class UserInputController : MonoBehaviour
         {
             //if(Input.GetKeyDown(KeyCode.Space))
             //    OnThrustStart
-            //if (Input.GetKey(KeyCode.Space))
+            
+            //start thrusting
             bool thrustInput = Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space);
             if (thrustInput)
-                RocketMovement.instance.Thrust();
+                RocketMovement.instance.Thrusting();
             else if (Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Space))
-                RocketMovement.instance.StopThrust();
+                RocketMovement.instance.StopThrusting();
 
-            //rotate object only when velocity isnt zero
             //rotation
+            //rotate object only when velocity isnt zero
             if (Input.GetKey(KeyCode.A))
             {
                 RocketMovement.instance.Rotate(1);

@@ -6,7 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    //CACHE
     public static GameManager instance;
+
+    //STATE
     public bool hasExploded = false;
 
     public event Action onExplosion;
