@@ -25,6 +25,7 @@ public class UserInputController : MonoBehaviour
             else if (Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Space))
                 RocketMovement.instance.StopThrust();
 
+            //rotate object only when velocity isnt zero
             //rotation
             if (Input.GetKey(KeyCode.A))
             {
