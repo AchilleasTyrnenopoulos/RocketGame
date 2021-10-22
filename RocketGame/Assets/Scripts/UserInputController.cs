@@ -14,7 +14,7 @@ public class UserInputController : MonoBehaviour
     void Update()
     {
         //move rocket only when its not exploded
-        if (!GameManager.instance.exploded)
+        if (!GameManager.instance.hasExploded)
         {
             //if(Input.GetKeyDown(KeyCode.Space))
             //    OnThrustStart

@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public bool exploded = false;
+    public bool hasExploded = false;
 
     public event Action onExplosion;
     private void Awake()
@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
 
     public void RocketExploded()
     {
-        exploded = true;
+        hasExploded = true;
         RestartScene(3);
     }
 
