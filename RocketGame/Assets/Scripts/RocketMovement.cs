@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
 public class RocketMovement : MonoBehaviour
 {
     public static RocketMovement instance;
@@ -28,7 +27,7 @@ public class RocketMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponentInChildren<Rigidbody>();
         thrustAudioSrc = GetComponent<AudioSource>();
 
         //add event listeners
