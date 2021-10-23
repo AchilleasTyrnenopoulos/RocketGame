@@ -10,6 +10,10 @@ public class RocketMovement : MonoBehaviour
     private float thrustSpeed;
     [SerializeField]
     private float rotationSpeed;
+    [SerializeField]
+    private float currentFuel;
+    [SerializeField]
+    private float maxFuel;
     
     //CACHE
     public static RocketMovement instance;
@@ -17,6 +21,8 @@ public class RocketMovement : MonoBehaviour
     private Rigidbody rb;
     [SerializeField]
     private AudioSource thrustAudioSrc;
+    [SerializeField]
+    private float rbSpeed;
 
     //public event Action onThrustStart;
 
@@ -32,6 +38,9 @@ public class RocketMovement : MonoBehaviour
         rb = GetComponentInChildren<Rigidbody>();
         thrustAudioSrc = GetComponent<AudioSource>();
 
+        //set parameters
+        currentFuel = maxFuel;
+
         //add event listeners
         //onThrustStart += Thrust;
         GameManager.instance.onExplosion += StopThrusting;
@@ -46,7 +55,7 @@ public class RocketMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        rbSpeed = rb.velocity.magnitude;
     }
 
     //public void OnThrustStart()
@@ -55,13 +64,20 @@ public class RocketMovement : MonoBehaviour
     //}
 
     public void Thrusting()
-    {        
-        //add force
-        rb.AddRelativeForce(Vector3.up * thrustSpeed * Time.deltaTime);
+    {
+        //check if the rocket has gas left
+        if (currentFuel > 0)
+        {
+            //add force
+            rb.AddRelativeForce(Vector3.up * thrustSpeed * Time.deltaTime);
 
-        //play audio
-        if(!thrustAudioSrc.isPlaying)
-            thrustAudioSrc.Play();
+            //spend gas
+            SpendGas();
+
+            //play audio
+            if (!thrustAudioSrc.isPlaying)
+                thrustAudioSrc.Play();
+        }
     }
 
     public void StopThrusting()
@@ -79,5 +95,31 @@ public class RocketMovement : MonoBehaviour
 
         //unfreeze physics system rotation
         rb.freezeRotation = false;
+    }
+
+    public float GetRbVelocity()
+    {
+        return rb.velocity.magnitude;
+    }
+
+    private void SpendGas()
+    {
+        if (currentFuel > 0)
+        {
+            currentFuel -= Time.deltaTime;
+        }
+    }
+
+    private void RegenerateGas(int amount)
+    {
+        if(currentFuel < maxFuel)
+        {
+            //add gas
+            currentFuel += amount;
+            //if gas has exceeded its max value, set it equal to max
+            if (currentFuel > maxFuel)
+                currentFuel = maxFuel;            
+        }
+
     }
 }
