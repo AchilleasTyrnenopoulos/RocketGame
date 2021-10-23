@@ -37,5 +37,24 @@ public class UserInputController : MonoBehaviour
                 RocketMovement.instance.Rotate(-1);
             }
         }
+
+#if DEBUG
+        #region Inputs for development / testing
+        //DEBUG / DEVELOPMENT 'CHEATS'
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            GameManager.instance.LoadNextScene(0);
+        }
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            GameObject rocket = GameObject.FindGameObjectWithTag(Tags.Rocket);
+            Collider[] colliders = rocket.GetComponents<Collider>();
+            foreach (var col in colliders)
+            {
+                col.enabled = !col.enabled;
+            }
+        }
+        #endregion
+#endif
     }
 }
