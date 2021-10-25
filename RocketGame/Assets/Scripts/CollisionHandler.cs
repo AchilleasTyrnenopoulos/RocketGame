@@ -16,5 +16,11 @@ public class CollisionHandler : MonoBehaviour
             default:
                 break;
         }
-    }    
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag(Tags.Portal))
+            GameManager.instance.LoadNextScene(3);
+    }
 }
