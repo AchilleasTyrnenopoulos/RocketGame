@@ -21,6 +21,9 @@ public class CollisionHandler : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag(Tags.Portal))
+        {
             GameManager.instance.LoadNextScene(3);
+            GameManager.instance.OnPortalEnter();
+        }
     }
 }

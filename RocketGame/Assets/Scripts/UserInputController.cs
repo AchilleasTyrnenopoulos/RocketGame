@@ -13,8 +13,8 @@ public class UserInputController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //move rocket only when its not exploded
-        if (!GameManager.instance.hasExploded)
+        //move rocket only when its not exploded and has not entered the portal
+        if (!GameManager.instance.hasExploded && !GameManager.instance.hasEnteredPortal)
         {
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
                 RocketMovement.instance.OnThrustStart();

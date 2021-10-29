@@ -50,6 +50,7 @@ public class RocketMovement : MonoBehaviour
         onThrustStart += StartThrusting;
         GameManager.instance.onExplosion += StopThrusting;
         GameManager.instance.onExplosion += StopExhaustFX;
+        GameManager.instance.onPortalEnter += DeleteGO;        
     }
 
     private void OnDisable()
@@ -58,6 +59,7 @@ public class RocketMovement : MonoBehaviour
         onThrustStart -= StartThrusting;
         GameManager.instance.onExplosion -= StopThrusting;
         GameManager.instance.onExplosion -= StopExhaustFX;
+        GameManager.instance.onPortalEnter -= DeleteGO;
     }
 
     // Update is called once per frame
@@ -111,6 +113,11 @@ public class RocketMovement : MonoBehaviour
         exhaustFX.SetActive(true);
         Invoke("StopExhaustFX", .5f);
 
+    }
+
+    public void DeleteGO()
+    {
+        Destroy(this.gameObject);
     }
 
     public void Rotate(int left)

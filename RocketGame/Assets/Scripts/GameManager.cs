@@ -11,8 +11,10 @@ public class GameManager : MonoBehaviour
 
     //STATE
     public bool hasExploded = false;
+    public bool hasEnteredPortal = false;
 
     public event Action onExplosion;
+    public event Action onPortalEnter;
     private void Awake()
     {
         instance = this;
@@ -22,10 +24,12 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         onExplosion += RocketExploded;
+        onPortalEnter += RocketHasEnteredPortal;
     }
     private void OnDisable()
     {
         onExplosion -= RocketExploded;
+        onExplosion -= RocketHasEnteredPortal;
     }
 
     // Update is called once per frame
@@ -38,6 +42,11 @@ public class GameManager : MonoBehaviour
     {
         hasExploded = true;
         RestartScene(3);
+    }
+
+    public void RocketHasEnteredPortal()
+    {
+        hasEnteredPortal = true;
     }
 
     #region Scene Management
@@ -73,5 +82,10 @@ public class GameManager : MonoBehaviour
     public void OnExplosion()
     {
         onExplosion?.Invoke();
+    }
+
+    public void OnPortalEnter()
+    {
+        onPortalEnter?.Invoke();
     }
 }
