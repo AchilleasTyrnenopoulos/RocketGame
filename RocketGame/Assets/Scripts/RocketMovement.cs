@@ -23,8 +23,12 @@ public class RocketMovement : MonoBehaviour
     private AudioSource thrustAudioSrc;
     [SerializeField]
     private float rbSpeed;
+    [SerializeField]
+    private GameObject thrustFireFX;
+    [SerializeField]
+    private GameObject exhaustFX;
 
-    //public event Action onThrustStart;
+    public event Action onThrustStart;
 
     private void Awake()
     {
@@ -43,13 +47,17 @@ public class RocketMovement : MonoBehaviour
 
         //add event listeners
         //onThrustStart += Thrust;
+        onThrustStart += StartThrusting;
         GameManager.instance.onExplosion += StopThrusting;
+        GameManager.instance.onExplosion += StopExhaustFX;
     }
 
     private void OnDisable()
     {
         //onThrustStart -= Thrust;
+        onThrustStart -= StartThrusting;
         GameManager.instance.onExplosion -= StopThrusting;
+        GameManager.instance.onExplosion -= StopExhaustFX;
     }
 
     // Update is called once per frame
@@ -58,10 +66,10 @@ public class RocketMovement : MonoBehaviour
         rbSpeed = rb.velocity.magnitude;
     }
 
-    //public void OnThrustStart()
-    //{
-    //    onThrustStart?.Invoke();
-    //}
+    public void OnThrustStart()
+    {
+        onThrustStart?.Invoke();
+    }
 
     public void Thrusting()
     {
@@ -78,11 +86,31 @@ public class RocketMovement : MonoBehaviour
             if (!thrustAudioSrc.isPlaying)
                 thrustAudioSrc.Play();
         }
+        else
+        {
+            StopThrusting();
+        }
+    }
+
+    public void StartThrusting()
+    {
+        thrustFireFX.SetActive(true);
+        exhaustFX.SetActive(true);
+        Invoke("StopExhaustFX", .5f);
+    }
+
+    private void StopExhaustFX()
+    {
+        exhaustFX.SetActive(false);
     }
 
     public void StopThrusting()
     {
         thrustAudioSrc.Stop();
+        thrustFireFX.SetActive(false);
+        exhaustFX.SetActive(true);
+        Invoke("StopExhaustFX", .5f);
+
     }
 
     public void Rotate(int left)
