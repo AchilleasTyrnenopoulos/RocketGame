@@ -27,6 +27,10 @@ public class RocketMovement : MonoBehaviour
     private GameObject thrustFireFX;
     [SerializeField]
     private GameObject exhaustFX;
+    [SerializeField]
+    private ParticleSystem explosionFX;
+    [SerializeField]
+    private GameObject sparksFx;
 
     public event Action onThrustStart;
 
@@ -50,6 +54,7 @@ public class RocketMovement : MonoBehaviour
         onThrustStart += StartThrusting;
         GameManager.instance.onExplosion += StopThrusting;
         GameManager.instance.onExplosion += StopExhaustFX;
+        GameManager.instance.onExplosion += PlayExplosionFx;
         GameManager.instance.onPortalEnter += DeleteGO;        
     }
 
@@ -59,7 +64,9 @@ public class RocketMovement : MonoBehaviour
         onThrustStart -= StartThrusting;
         GameManager.instance.onExplosion -= StopThrusting;
         GameManager.instance.onExplosion -= StopExhaustFX;
+        GameManager.instance.onExplosion -= PlayExplosionFx;
         GameManager.instance.onPortalEnter -= DeleteGO;
+
     }
 
     // Update is called once per frame
@@ -157,4 +164,37 @@ public class RocketMovement : MonoBehaviour
         }
 
     }
+
+    private void PlayExplosionFx()
+    {
+        if (!explosionFX.isPlaying)
+        {
+            PlayParticleFX(explosionFX);
+            Invoke("StopExplosionFx", explosionFX.main.duration);
+        }
+    }
+
+    private void StopExplosionFx()
+    {
+        StopParticleFX(explosionFX);
+    }
+
+    private void PlayParticleFX(ParticleSystem fx)
+    {
+        fx.Play();
+    }
+
+    private void StopParticleFX(ParticleSystem fx)
+    {
+        fx.Stop();
+    }
+
+    public void SpawnSparksFX(Vector3 spawnPos)
+    {
+        GameObject sparks = Instantiate(sparksFx, spawnPos, Quaternion.identity);
+        Destroy(sparks, sparks.GetComponent<ParticleSystem>().main.duration);
+        print("Spawned sparks");
+    }
+
+    
 }
