@@ -57,6 +57,14 @@ public class UserInputController : MonoBehaviour
                 col.enabled = !col.enabled;
             }
         }
+        //toggle pause
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (Time.timeScale > 0)
+                Time.timeScale = 0f;
+            else
+                Time.timeScale = 1f;
+        }
         #endregion
 #endif
     }
