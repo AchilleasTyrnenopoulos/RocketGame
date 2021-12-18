@@ -26,11 +26,17 @@ public class RocketMovement : MonoBehaviour
     [SerializeField]
     private GameObject thrustFireFX;
     [SerializeField]
+    private GameObject thrustSpotLight;
+    [SerializeField]
+    private GameObject rocketAreaLight;
+    [SerializeField]
     private GameObject exhaustFX;
     [SerializeField]
     private ParticleSystem explosionFX;
     [SerializeField]
     private GameObject sparksFx;
+    [SerializeField]
+    private Animator anim;
 
     public event Action onThrustStart;
 
@@ -45,6 +51,7 @@ public class RocketMovement : MonoBehaviour
         //cache components
         rb = GetComponentInChildren<Rigidbody>();
         thrustAudioSrc = GetComponent<AudioSource>();
+        anim = GetComponentInChildren<Animator>();
 
         //set parameters
         currentFuel = maxFuel;
@@ -55,7 +62,10 @@ public class RocketMovement : MonoBehaviour
         GameManager.instance.onExplosion += StopThrusting;
         GameManager.instance.onExplosion += StopExhaustFX;
         GameManager.instance.onExplosion += PlayExplosionFx;
-        GameManager.instance.onPortalEnter += DeleteGO;        
+        //GameManager.instance.onPortalEnter += DeleteGO;
+        GameManager.instance.onPortalEnter += MakeTransparent;
+        GameManager.instance.onPortalEnter += StopThrusting;
+        GameManager.instance.onPortalEnter += StopExhaustFX;
     }
 
     private void OnDisable()
@@ -65,7 +75,10 @@ public class RocketMovement : MonoBehaviour
         GameManager.instance.onExplosion -= StopThrusting;
         GameManager.instance.onExplosion -= StopExhaustFX;
         GameManager.instance.onExplosion -= PlayExplosionFx;
-        GameManager.instance.onPortalEnter -= DeleteGO;
+        //GameManager.instance.onPortalEnter -= DeleteGO;
+        GameManager.instance.onPortalEnter -= MakeTransparent;
+        GameManager.instance.onPortalEnter -= StopThrusting;
+        GameManager.instance.onPortalEnter -= StopExhaustFX;
 
     }
 
@@ -194,6 +207,16 @@ public class RocketMovement : MonoBehaviour
         GameObject sparks = Instantiate(sparksFx, spawnPos, Quaternion.identity);
         Destroy(sparks, sparks.GetComponent<ParticleSystem>().main.duration);
         print("Spawned sparks");
+    }
+
+    public void MakeTransparent()
+    {
+        thrustSpotLight.SetActive(false);
+        rocketAreaLight.SetActive(false);
+        anim.enabled = true;
+
+        rb.freezeRotation = true;
+        
     }
 
     

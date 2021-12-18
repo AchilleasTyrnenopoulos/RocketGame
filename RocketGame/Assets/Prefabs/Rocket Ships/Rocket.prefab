@@ -4933,7 +4933,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1105090042}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0019999743, y: -0.12, z: -0.006}
+  m_LocalPosition: {x: 0.0019999743, y: -0.12, z: 0}
   m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_Children: []
   m_Father: {fileID: 2770693}
@@ -9909,6 +9909,25 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!95 &391062565
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781423239864213}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 774ea238506142f418f28cd591a78d9d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2883241790615349112
 GameObject:
   m_ObjectHideFlags: 0
@@ -9970,10 +9989,13 @@ MonoBehaviour:
   thrustAudioSrc: {fileID: 0}
   rbSpeed: 0
   thrustFireFX: {fileID: 1105090042}
+  thrustSpotLight: {fileID: 1855034158}
+  rocketAreaLight: {fileID: 1168291032}
   exhaustFX: {fileID: 101147971}
   explosionFX: {fileID: 2883241789018523038}
   sparksFx: {fileID: 2183677226251858673, guid: 01a1e415e52035945ab13c9de8d6b9e2,
     type: 3}
+  anim: {fileID: 0}
 --- !u!82 &581804111
 AudioSource:
   m_ObjectHideFlags: 0
@@ -10194,6 +10216,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6153a95d4be714a4caf37248fd1f1cf9, type: 3}
+--- !u!1 &1781423239864213 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1781423112372736, guid: 6153a95d4be714a4caf37248fd1f1cf9,
+    type: 3}
+  m_PrefabInstance: {fileID: 145153429}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4557838781640405 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4557838640952128, guid: 6153a95d4be714a4caf37248fd1f1cf9,

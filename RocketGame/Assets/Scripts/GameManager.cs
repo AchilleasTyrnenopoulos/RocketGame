@@ -86,6 +86,7 @@ public class GameManager : MonoBehaviour
 
     public void OnPortalEnter()
     {
+        hasEnteredPortal = true;
         onPortalEnter?.Invoke();
     }
 }
