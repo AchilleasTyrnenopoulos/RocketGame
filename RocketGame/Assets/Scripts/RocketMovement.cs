@@ -132,7 +132,7 @@ public class RocketMovement : MonoBehaviour
         thrustFireFX.SetActive(false);
         exhaustFX.SetActive(true);
         Invoke("StopExhaustFX", .5f);
-
+        //print("stopped thrusting");
     }
 
     public void DeleteGO()

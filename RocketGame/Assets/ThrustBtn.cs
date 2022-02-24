@@ -5,8 +5,7 @@ using UnityEngine.EventSystems;
 
 public class ThrustBtn : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    bool isPressed = false;
-    RocketMovement rocketMove;
+    bool isPressed = false;   
     
     // Update is called once per frame
     void Update()
@@ -20,6 +19,7 @@ public class ThrustBtn : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public void OnPointerDown(PointerEventData eventData)
     {
         isPressed = true;
+        RocketMovement.instance.OnThrustStart();
     }
 
     public void OnPointerUp(PointerEventData eventData)
