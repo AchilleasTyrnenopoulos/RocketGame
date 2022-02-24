@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class UserInputController : MonoBehaviour
 {
+    public Joystick joystick;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,14 +31,19 @@ public class UserInputController : MonoBehaviour
             //rotate object only when velocity isnt zero
             if (RocketMovement.instance.GetRbVelocity() > 1f)
             {
-                if (Input.GetKey(KeyCode.A))
-                {
-                    RocketMovement.instance.Rotate(1);
-                }
-                else if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
-                {
-                    RocketMovement.instance.Rotate(-1);
-                }
+                //if (Input.GetKey(KeyCode.A))
+                //{
+                //    RocketMovement.instance.Rotate(1);
+                //}
+                //else if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
+                //{
+                //    RocketMovement.instance.Rotate(-1);
+                //}
+                //print(joystick.Horizontal);
+                //if (joystick.Horizontal > 0.4f)
+                //    RocketMovement.instance.Rotate(-1);
+                //else if (joystick.Horizontal < 0.4f)
+                //    RocketMovement.instance.Rotate(1);
             }
         }
 
