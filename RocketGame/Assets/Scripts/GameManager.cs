@@ -61,21 +61,23 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadSceneAsync(currentSceneIndex);
     }
 
-    public static string NextSceneMethod = "LoadNextScene"; //string to use when invoking the method
-    public void LoadNextScene(int delay)
-    {
-        Invoke(NextSceneMethod, delay);
-    }
+    //public static string NextSceneMethod = "LoadNextScene"; //string to use when invoking the method
+    //public void LoadNextScene(int delay)
+    //{
+    //    Invoke(NextSceneMethod, delay);
+    //}
     public void LoadNextScene()
     {
-        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
-        if (nextSceneIndex == SceneManager.sceneCountInBuildSettings)
+        if (SceneManager.GetActiveScene() != null) //not sure if this is needed
         {
-            nextSceneIndex = 0;
+            int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+            if (nextSceneIndex == SceneManager.sceneCountInBuildSettings)
+            {
+                nextSceneIndex = 0;
+            }
+
+            SceneManager.LoadScene(nextSceneIndex);
         }
-
-        SceneManager.LoadSceneAsync(nextSceneIndex);
-
     }
     #endregion
 

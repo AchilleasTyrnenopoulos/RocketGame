@@ -50,10 +50,10 @@ public class UserInputController : MonoBehaviour
 #if DEBUG
         #region Inputs for development / testing
         //DEBUG / DEVELOPMENT 'CHEATS'
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            GameManager.instance.LoadNextScene(0);
-        }
+        //if (Input.GetKeyDown(KeyCode.N))
+        //{
+        //    GameManager.instance.LoadNextScene(0);
+        //}
         if(Input.GetKeyDown(KeyCode.C))
         {
             GameObject rocket = GameObject.FindGameObjectWithTag(Tags.Rocket);
