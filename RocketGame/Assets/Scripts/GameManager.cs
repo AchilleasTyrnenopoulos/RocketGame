@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     public void RocketExploded()
     {
         hasExploded = true;
-        RestartScene(3);
+        RestartScene();
     }
 
     public void RocketHasEnteredPortal()
@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
     public void RestartScene()
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(currentSceneIndex);
+        SceneManager.LoadSceneAsync(currentSceneIndex);
     }
 
     public static string NextSceneMethod = "LoadNextScene"; //string to use when invoking the method
@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
             nextSceneIndex = 0;
         }
 
-        SceneManager.LoadScene(nextSceneIndex);
+        SceneManager.LoadSceneAsync(nextSceneIndex);
 
     }
     #endregion
