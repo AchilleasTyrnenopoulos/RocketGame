@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 {
     //CACHE
     public static GameManager instance;
+    [SerializeField]
+    GameObject nextSceneBtn;
 
     //STATE
     public bool hasExploded = false;
@@ -47,6 +49,7 @@ public class GameManager : MonoBehaviour
     public void RocketHasEnteredPortal()
     {
         hasEnteredPortal = true;
+        nextSceneBtn.SetActive(true);
     }
 
     #region Scene Management

@@ -24,6 +24,8 @@ public class RocketMovement : MonoBehaviour
     [SerializeField]
     private float rbSpeed;
     [SerializeField]
+    private GameObject thrusterGO;
+    [SerializeField]
     private GameObject thrustFireFX;
     [SerializeField]
     private GameObject thrustSpotLight;
@@ -62,10 +64,12 @@ public class RocketMovement : MonoBehaviour
         GameManager.instance.onExplosion += StopThrusting;
         GameManager.instance.onExplosion += StopExhaustFX;
         GameManager.instance.onExplosion += PlayExplosionFx;
+        GameManager.instance.onExplosion += DisableThruster;
         //GameManager.instance.onPortalEnter += DeleteGO;
         GameManager.instance.onPortalEnter += MakeTransparent;
         GameManager.instance.onPortalEnter += StopThrusting;
         GameManager.instance.onPortalEnter += StopExhaustFX;
+        GameManager.instance.onPortalEnter += DisableThruster;
     }
 
     private void OnDisable()
@@ -75,10 +79,12 @@ public class RocketMovement : MonoBehaviour
         GameManager.instance.onExplosion -= StopThrusting;
         GameManager.instance.onExplosion -= StopExhaustFX;
         GameManager.instance.onExplosion -= PlayExplosionFx;
+        GameManager.instance.onExplosion -= DisableThruster;
         //GameManager.instance.onPortalEnter -= DeleteGO;
         GameManager.instance.onPortalEnter -= MakeTransparent;
         GameManager.instance.onPortalEnter -= StopThrusting;
         GameManager.instance.onPortalEnter -= StopExhaustFX;
+        GameManager.instance.onPortalEnter -= DisableThruster;
 
     }
 
@@ -133,6 +139,11 @@ public class RocketMovement : MonoBehaviour
         exhaustFX.SetActive(true);
         Invoke("StopExhaustFX", .5f);
         //print("stopped thrusting");
+    }
+
+    public void DisableThruster()
+    {
+        thrusterGO.SetActive(false);
     }
 
     public void DeleteGO()

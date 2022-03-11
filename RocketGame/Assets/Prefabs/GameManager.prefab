@@ -43,3 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c30606936c56af44bae24aa1e2bf775, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextSceneBtn: {fileID: 0}
+  hasExploded: 0
+  hasEnteredPortal: 0

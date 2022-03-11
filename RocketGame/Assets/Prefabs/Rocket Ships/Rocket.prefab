@@ -9816,25 +9816,6 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!95 &391062565
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1781423239864213}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 774ea238506142f418f28cd591a78d9d, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2883241790615349112
 GameObject:
   m_ObjectHideFlags: 0
@@ -9895,6 +9876,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   thrustAudioSrc: {fileID: 0}
   rbSpeed: 0
+  thrusterGO: {fileID: 2770692}
   thrustFireFX: {fileID: 1105090042}
   thrustSpotLight: {fileID: 1855034158}
   rocketAreaLight: {fileID: 3539288721752259223}
@@ -10228,6 +10210,25 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 145153429}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &391062565
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781423239864213}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 774ea238506142f418f28cd591a78d9d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &662913718342567292
 PrefabInstance:
   m_ObjectHideFlags: 0

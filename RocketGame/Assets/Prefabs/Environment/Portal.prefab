@@ -385,6 +385,16 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -0.28
       objectReference: {fileID: 0}
+    - target: {fileID: 3274629881430372979, guid: e87f9ebb8e616584f81aa4dd91e77e2d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3274629881430372988, guid: e87f9ebb8e616584f81aa4dd91e77e2d,
+        type: 3}
+      propertyPath: EmissionModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3274629881668138404, guid: e87f9ebb8e616584f81aa4dd91e77e2d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -425,9 +435,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3274629881668138405, guid: e87f9ebb8e616584f81aa4dd91e77e2d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3274629881668138406, guid: e87f9ebb8e616584f81aa4dd91e77e2d,
+        type: 3}
+      propertyPath: EmissionModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3274629881668138427, guid: e87f9ebb8e616584f81aa4dd91e77e2d,
         type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3274629882598886340, guid: e87f9ebb8e616584f81aa4dd91e77e2d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3274629882598886341, guid: e87f9ebb8e616584f81aa4dd91e77e2d,
+        type: 3}
+      propertyPath: EmissionModule.enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3274629882598886362, guid: e87f9ebb8e616584f81aa4dd91e77e2d,
@@ -439,6 +469,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 3274629882626576856, guid: e87f9ebb8e616584f81aa4dd91e77e2d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3274629882626576857, guid: e87f9ebb8e616584f81aa4dd91e77e2d,
+        type: 3}
+      propertyPath: EmissionModule.enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3274629882626576857, guid: e87f9ebb8e616584f81aa4dd91e77e2d,
         type: 3}

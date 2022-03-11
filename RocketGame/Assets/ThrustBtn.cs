@@ -10,7 +10,7 @@ public class ThrustBtn : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     // Update is called once per frame
     void Update()
     {
-        if(isPressed)
+        if(isPressed && !GameManager.instance.hasEnteredPortal && !GameManager.instance.hasExploded)
         {
             RocketMovement.instance.Thrusting();
         }        
@@ -18,14 +18,20 @@ public class ThrustBtn : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        isPressed = true;
-        RocketMovement.instance.OnThrustStart();
+        if (!GameManager.instance.hasEnteredPortal && !GameManager.instance.hasExploded)
+        {
+            isPressed = true;
+            RocketMovement.instance.OnThrustStart();
+        }        
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        isPressed = false;
-        RocketMovement.instance.StopThrusting();
+        if (!GameManager.instance.hasEnteredPortal && !GameManager.instance.hasExploded)
+        {
+            isPressed = false;
+            RocketMovement.instance.StopThrusting();
+        }
     }
 
 }
