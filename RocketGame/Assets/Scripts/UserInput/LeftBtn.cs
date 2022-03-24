@@ -21,7 +21,7 @@ public class LeftBtn : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     // Update is called once per frame
     void Update()
     {
-        if (isPressed)
+        if (isPressed && RocketMovement.instance.GetRbVelocity() > 1f)
             RocketMovement.instance.Rotate(1);
     }
 }
