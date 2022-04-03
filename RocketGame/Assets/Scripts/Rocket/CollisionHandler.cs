@@ -26,7 +26,7 @@ public class CollisionHandler : MonoBehaviour
     {
         if (other.gameObject.CompareTag(Tags.Portal))
         {
-            GameManager.instance.OnPortalEnter();
+            GameManager.instance.OnPortalEnter(); //TO DO this must be called only once
             //GameManager.instance.LoadNextScene();
         }
     }

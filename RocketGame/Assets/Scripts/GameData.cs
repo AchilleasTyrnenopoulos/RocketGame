@@ -1,3 +1,4 @@
+using BayatGames.SaveGameFree;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,12 +16,26 @@ public class GameData : MonoBehaviour
     private Dictionary<int, bool> levelsUnlocked; //list of all levels and if they are unlocked
     private Dictionary<int, double> levelsHighScores; //list of all levels and their high scores
 
+    [Header("PLANETS")]
+    private Dictionary<int, bool> planetsUnlocked;
+
+    //save path
+    //string savePath = Application.persistentDataPath + "\\saveData.txt";
+    string savePath = nameof(rocketIndex) + ".txt";
 
     private void Awake()
     {
         instance = this;
 
-        //get rocket index from save
+        //get game data from save
+        if (SaveGame.Exists(savePath))
+        {
+            print("Save file exists");
+            
+            LoadGameData();
+            //SaveGame.Delete(savePath);
+        }
+        //SaveGameData();
 
         DontDestroyOnLoad(this);
     }
@@ -30,21 +45,65 @@ public class GameData : MonoBehaviour
         return rocketPrefabs[index];
     }
 
-    public bool IsLevelUnlocked(int level)
-    {
-        bool result = false;
-        levelsUnlocked.TryGetValue(level, out result);
-        print($"Level {level} unlocked: {result}");
+    //public bool IsLevelUnlocked(int level)
+    //{
+    //    bool result = false;
+    //    levelsUnlocked.TryGetValue(level, out result);
+    //    print($"Level {level} unlocked: {result}");
 
-        return result;        
+    //    return result;        
+    //}
+
+    //public bool IsPlanetUnlocked(int planetIndex)
+    //{
+    //    //because every planet has 10 levels
+    //    bool result = false;
+    //    planetsUnlocked.TryGetValue(planetIndex, out result);
+    //    print($"Planet {planetIndex} is unlocked: {result}");
+
+    //    return result;
+    //}
+
+    //public double GetLevelHighScore(int level)
+    //{
+    //    double result = 0.00;
+    //    levelsHighScores.TryGetValue(level, out result);
+    //    print($"Level {level} high score: {result}");
+
+    //    return result;
+    //}
+
+    public void SaveGameData()
+    {
+        //create save model
+        SaveModel saveModel = new SaveModel
+        {
+            RocketIndex = rocketIndex
+        };
+        
+
+        //save data
+        SaveGame.Save<SaveModel>(savePath, saveModel);
+
+        print("Saved game");
     }
 
-    public double GetLevelHighScore(int level)
+    public void LoadGameData()
     {
-        double result = 0.00;
-        levelsHighScores.TryGetValue(level, out result);
-        print($"Level {level} high score: {result}");
+        //get save model
+        SaveModel savedData = SaveGame.Load<SaveModel>(savePath);
 
-        return result;
+        //pass values to game data
+        rocketIndex = savedData.RocketIndex;
+
+        print("Loaded game data");
     }
 }
+
+public class SaveModel
+{
+    public int RocketIndex { get; set; }
+    public Dictionary<int, bool> LevelsUnlocked { get; set; }
+    public Dictionary<int, double> LevelsHighScores { get; set; }
+}
+
