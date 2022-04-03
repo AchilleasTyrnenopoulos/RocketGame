@@ -6,9 +6,7 @@ public class RocketSpawner : Spawner
 {
     private void Awake() 
     {
-        //if (GameData.instance == null)
-        //    print("this is the error");
-        spawnPrefab = GameData.instance.rocketPrefab;
+        spawnPrefab = GameData.instance.GetRocketPrefab(GameData.instance.rocketIndex);
     }
 
 }

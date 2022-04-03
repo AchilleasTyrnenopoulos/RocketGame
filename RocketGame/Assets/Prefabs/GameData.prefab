@@ -43,5 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bde7285ec6f99e4eba154d760c5c3a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rocketPrefab: {fileID: 2883241790615349112, guid: 460b1141c5c27d14cb64725dca4cd846,
-    type: 3}
+  rocketIndex: 0
+  rocketPrefabs:
+  - {fileID: 2883241790615349112, guid: 460b1141c5c27d14cb64725dca4cd846, type: 3}
+  - {fileID: 3857521113732016305, guid: 10c3945a0b81a39439d99b73ab7f0d0c, type: 3}
