@@ -32,10 +32,13 @@ public class GameData : MonoBehaviour
         {
             print("Save file exists");
             
-            LoadGameData();
-            //SaveGame.Delete(savePath);
+            //LoadGameData();
+            SaveGame.Delete(savePath);
         }
-        //SaveGameData();
+        else
+        {
+            print("Save file not found");
+        }
 
         DontDestroyOnLoad(this);
     }
