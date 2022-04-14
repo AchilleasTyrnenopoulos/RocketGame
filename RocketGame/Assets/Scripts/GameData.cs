@@ -11,6 +11,8 @@ public class GameData : MonoBehaviour
     public int rocketIndex = 0;
     [SerializeField]
     private List<GameObject> rocketPrefabs;
+    [SerializeField]
+    private int rocketsUnlocked = 0;
 
     [Header("LEVELS")]    
     private Dictionary<int, bool> levelsUnlocked; //list of all levels and if they are unlocked
@@ -45,6 +47,9 @@ public class GameData : MonoBehaviour
 
     public GameObject GetRocketPrefab(int index)
     {
+        if (index > rocketsUnlocked)
+            index = 0;
+
         return rocketPrefabs[index];
     }
 
